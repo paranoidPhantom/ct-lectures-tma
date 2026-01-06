@@ -10,4 +10,7 @@ export default defineNuxtConfig({
     },
     css: ["@/assets/css/global.css"],
     ssr: false,
+    build: {
+        transpile: ["vue"],
+    },
 });
