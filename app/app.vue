@@ -1,12 +1,30 @@
 <script lang="ts" setup>
 import { Button } from "primevue";
+import { MainButton, useTheme } from "vue-tg";
 
-import { useTheme } from "vue-tg";
+const { onChange: onThemeChange, colorScheme } = useTheme();
+
+const applyTheme = (override?: boolean) => {
+    if (colorScheme.value == "dark" || override === true) {
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+};
+
+onThemeChange(applyTheme);
+
+onMounted(() => {
+    setTimeout(applyTheme, 100);
+    if (import.meta.dev) {
+        applyTheme(true);
+    }
+});
 </script>
 
 <template>
-    <div>
+    <div class="p-4">
         <Button :label="'test'" />
-        <h1 class="font-bold text-5xl">L1</h1>
+        <MainButton :label="'test main button'" />
     </div>
 </template>
