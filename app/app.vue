@@ -1,30 +1,21 @@
-<script lang="ts" setup>
-import { Button } from "primevue";
-import { MainButton, useTheme } from "vue-tg";
-
-const { onChange: onThemeChange, colorScheme } = useTheme();
-
-const applyTheme = (override?: boolean) => {
-    if (colorScheme.value == "dark" || override === true) {
-        document.documentElement.classList.add("dark");
-    } else {
-        document.documentElement.classList.remove("dark");
-    }
-};
-
-onThemeChange(applyTheme);
-
-onMounted(() => {
-    setTimeout(applyTheme, 100);
-    if (import.meta.dev) {
-        applyTheme(true);
-    }
-});
-</script>
+<script lang="ts" setup></script>
 
 <template>
-    <div class="p-4">
-        <Button :label="'test'" />
-        <MainButton :label="'test main button'" />
-    </div>
+    <ClientOnly>
+        <div>
+            <UtilInsetProvider>
+                <UtilThemeProvider />
+                <main class="p-4">
+                    <NuxtLayout>
+                        <NuxtPage />
+                    </NuxtLayout>
+                </main>
+            </UtilInsetProvider>
+        </div>
+        <template #fallback>
+            <div class="h-screen flex justify-center items-center text-3xl">
+                <Icon name="svg-spinners:ring-resize" />
+            </div>
+        </template>
+    </ClientOnly>
 </template>
