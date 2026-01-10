@@ -1,5 +1,5 @@
 import PrimeVue from "primevue/config";
-import Lara from "@primeuix/themes/lara";
+import Aura from "@primeuix/themes/aura";
 import { definePreset } from "@primeuix/themes";
 import { useTheme } from "vue-tg";
 
@@ -45,7 +45,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     const buttonHsl = hexToHsl(theme.button_color);
 
-    const Noir = definePreset(Lara, {
+    const Noir = definePreset(Aura, {
         semantic: {
             primary: {
                 50: buttonHsl
