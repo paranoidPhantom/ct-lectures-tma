@@ -19,6 +19,7 @@ export default defineNuxtConfig({
             script: [{ src: "https://telegram.org/js/telegram-web-app.js" }],
         },
     },
+    ssr: false,
     css: ["@/assets/css/global.css"],
     build: {
         transpile: ["vue"],
